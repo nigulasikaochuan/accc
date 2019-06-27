@@ -1,15 +1,15 @@
 from typing import List
-from pycorrelate import ucorrelate
-import numpy as np
+
 import tqdm
 from Ocspy.Base import QamSignal
 from Ocspy.Channel import NonlinearFiber
 from Ocspy.Instrument import Edfa, AWG, Multiplex
 from Ocspy.utilities import calc_sps_in_fiber, to_wdm_array
+from pycorrelate import ucorrelate
 
 from CONF import PSCF, SPACING, ROLL_OFF
 from CONF import SSMF
-
+import numpy as np
 SPLIT_CONFIG = -100000
 
 
@@ -32,12 +32,10 @@ def generate_spans_edfas(span_setting):
     edfas = []
     for setting in span_setting:
         if setting == 0:
-            spans.append(NonlinearFiber(**PSCF, length=80,
-                                        step_length=20 / 1000, backend='cupy'))
+            spans.append(NonlinearFiber(**PSCF, length=80, step_length=20 / 1000, backend='cupy'))
 
         elif setting == 1:
-            spans.append(NonlinearFiber(**SSMF, length=80,
-                                        step_length=20 / 1000, backend='cupy'))
+            spans.append(NonlinearFiber(**SSMF, length=80, step_length=20 / 1000, backend='cupy'))
 
     for span in spans:
         edfa = Edfa(gain_db=span.alpha * span.length, nf=5, is_ase=False)
@@ -59,8 +57,7 @@ def generate_signal(signal_setting: dict):
 
     frequences = [193.1e12 + i * SPACING for i in range(nch)]
     for index, _ in enumerate(range(nch)):
-        sig = QamSignal(sps_in_fiber=sps_in_fiber, mf=mf,
-                        frequence=frequences[index])
+        sig = QamSignal(sps_in_fiber=sps_in_fiber, mf=mf, frequence=frequences[index])
         sig = AWG(alpha=ROLL_OFF)(sig)
         sig.set_signal_power(power, 'dbm')
         signals.append(sig)
@@ -116,7 +113,6 @@ def prop(signal, spans, edfas, is_copy=False):
 
     return signal
 
-
 def calc_xcorr(sequence1, sequence2, max_lag):
     sequence1 = np.atleast_2d(sequence1)
     sequence2 = np.atleast_2d(sequence2)
@@ -132,6 +128,8 @@ def calc_xcorr(sequence1, sequence2, max_lag):
             res2.append(10*np.log10(1/np.sum(np.abs(res))))
 
     return res2
+
+
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from Ocspy.Base.SignalInterface import WdmSignalFromArray
 from Ocspy.Instrument import Demultiplex, ADC
 from Ocspy.ReceiverDsp import MatchedFilter
 from Ocspy.Base import QamSignal
-from CONF import ROLL_OFF
+from CONF import ROLL_OFF, DATA_CONFIG
 from Ocspy.tool import downsample
 from Ocspy.tool import scatterplot
 from Ocspy.ReceiverDsp import estimate_snr_using_tx
@@ -30,11 +30,15 @@ def receiver_onechannel(signal: QamSignal, spans):
 
 
 def receiver_wdmsignal(wdmsignal: WdmSignalFromArray, index, spans):
-    original_symbol = wdmsignal.signal_under_study[index]
+    center_index2 = len(wdmsignal.signal_under_study)//2
+    if wdmsignal.signal_index[center_index2]!=index:
+        center_index2 = center_index2 +(index - wdmsignal.signal_index[center_index2])
+    original_symbol = wdmsignal.signal_under_study[center_index2].symbol
 
     wdmsignal = cd_compensation(wdmsignal, spans, False)
     demultiplexed_signal = Demultiplex.demux_signal(
-        wdmsignal, index, roll_off=ROLL_OFF)
+        wdmsignal, center_index2, roll_off=ROLL_OFF,freq_index=index)
+
     demultiplexed_signal = ADC()(demultiplexed_signal)
     demultiplexed_signal = MatchedFilter(
         roll_off=ROLL_OFF, sps=demultiplexed_signal.sps_in_fiber)(demultiplexed_signal)
@@ -51,10 +55,11 @@ def receiver_wdmsignal(wdmsignal: WdmSignalFromArray, index, spans):
 
 def get_feature(wdm_signal: WdmSignalFromArray, spans, tocorrc_index, center_demod_symbol, max_lag=100):
     center_index = len(wdm_signal.signal_under_study)//2
-    interfer_symbol = receiver_wdmsignal(wdm_signal, tocorrc_index, spans)
+    interfer_symbol,_ = receiver_wdmsignal(wdm_signal, tocorrc_index, spans)
 
     center_ori_symbol = wdm_signal.signal_under_study[center_index].symbol
-    interf_ori_symbol = wdm_signal.signal_under_study[tocorrc_index].symbol
+    new_index = center_index + tocorrc_index-wdm_signal.signal_index[center_index]
+    interf_ori_symbol = wdm_signal.signal_under_study[new_index].symbol
     noise_center = np.abs(center_demod_symbol)-np.abs(center_ori_symbol)
     noise_inter = np.abs(interfer_symbol) - np.abs(interf_ori_symbol)
     phase_noise_center = np.angle(center_demod_symbol/center_ori_symbol)
@@ -79,6 +84,7 @@ def get_total_snr(data_dir):
             wdm_signal, center_index, spans)
         res[name] = {
             'center_receive_symbol': center_receiver_symbol, 'total_snr': snr}
+        break
     return res
 
 
@@ -93,6 +99,7 @@ def get_spm(data_dir):
         spans = all_information['spans']
         _, snr = receiver_onechannel(only_center, spans)
         res[name] = snr
+        break
     return res
 
 
@@ -120,8 +127,7 @@ def main_function():
         center_index = wdm_signal.signal_index[center_index]
         left = center_index-1
         right = center_index+1
-        x = [left, center_index, right]
-        center_demod_symbol = total_snr_lin['center_receive_symbol']
+        center_demod_symbol = total_snr[name]['center_receive_symbol']
         left_feature = get_feature(
             wdm_signal, spans, left, center_demod_symbol)
         right_feature = get_feature(
@@ -130,3 +136,6 @@ def main_function():
         feature_target[cnt, :] = np.hstack(
             (np.array(right_feature), np.array(left_feature), target))
     joblib.dump(feature_target, 'dataall')
+
+if __name__ == '__main__':
+    main_function()
