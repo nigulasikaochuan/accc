@@ -77,10 +77,12 @@ def main():
     except Exception as e:
         pass
     cofig_all = joblib.load('config_set')
-    cofig_all = cofig_all[:200]
+    cofig_all = cofig_all[165:200]
 
 
     for conf_ith,conf in enumerate(cofig_all):
+        temp = conf_ith
+        conf_ith +=165
         res = read_config(conf)
         span_setting = res['span_setting']
         ch_number = res['ch_number']
@@ -103,7 +105,7 @@ def main():
         wdm_signal_afterprop  = sumulate_all(wdm_signal,spans,edfas)
         to_save = dict(wdm_signal_afterprop=wdm_signal_afterprop,center_signal_afterprop=center_signal_afterprop,spans=spans)
         save(to_save,f'{conf_ith}_th')
-
+        conf_ith = temp
 
 
 if __name__ == '__main__':
