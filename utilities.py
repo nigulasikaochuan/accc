@@ -113,7 +113,14 @@ def prop(signal, spans, edfas, is_copy=False):
 
     return signal
 
-def calc_xcorr(sequence1, sequence2, max_lag):
+def calc_xcorr(sequence1, sequence2, max_lag)->tuple:
+    '''
+
+    :param sequence1: one channel's amplitude noise or phase noise
+    :param sequence2: another channel's amplitude noise or phase noise
+    :param max_lag: the max lag of correlation
+    :return: tuple (anc_xx,anc_xy,anc_yy) or (pnc_xx,pnc_xy,pnc_yy)
+    '''
     sequence1 = np.atleast_2d(sequence1)
     sequence2 = np.atleast_2d(sequence2)
     res2 = []
