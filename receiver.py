@@ -116,8 +116,10 @@ def main_function():
         xpm_lin_nsr = 1/total_snr_lin - 1/spm_snr_lin
         xpm_lin_snr_ = 1/xpm_lin_nsr
         xpm_snr[key] = 10*np.log10(xpm_lin_snr_)
+
     names = os.listdir(DATA_CONFIG)
     feature_target = np.ones((len(names), 2+2+1))
+
     for cnt, name in enumerate(names):
         all_information = joblib.load(DATA_CONFIG+name)
         wdm_signal = all_information['wdm_signal_afterprop']
@@ -135,6 +137,7 @@ def main_function():
         target = xpm_snr[name]
         feature_target[cnt, :] = np.hstack(
             (np.array(right_feature), np.array(left_feature), target))
+
     joblib.dump(feature_target, 'dataall')
 
 if __name__ == '__main__':

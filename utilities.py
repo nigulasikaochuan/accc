@@ -5,7 +5,7 @@ from Ocspy.Base import QamSignal
 from Ocspy.Channel import NonlinearFiber
 from Ocspy.Instrument import Edfa, AWG, Multiplex
 from Ocspy.utilities import calc_sps_in_fiber, to_wdm_array
-from pycorrelate import ucorrelate
+# from pycorrelate import ucorrelate
 
 from CONF import PSCF, SPACING, ROLL_OFF
 from CONF import SSMF

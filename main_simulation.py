@@ -9,6 +9,7 @@ import joblib
 from typing import List
 from Ocspy.Base import QamSignal
 from Ocspy.Instrument import AWG
+from Ocspy.utilities import generate_qam_signal
 from resampy import resample
 
 from utilities import prop, read_config, generate_signal, mux_signal, generate_spans_edfas
@@ -66,7 +67,7 @@ def sumulate_all(wdm_signal,spans,edfas):
     return wdm_signal
 
 def save(obj,name):
-    joblib.dump(obj,'./data/'+name)
+    joblib.dump(obj,name,compress=7)
 
 
 
@@ -77,19 +78,30 @@ def main():
     except Exception as e:
         pass
     cofig_all = joblib.load('config_set')
-    cofig_all = cofig_all[165:200]
+    cofig_all = cofig_all[200:300]
 
 
     for conf_ith,conf in enumerate(cofig_all):
-        temp = conf_ith
-        conf_ith +=165
+        # temp = conf_ith
         res = read_config(conf)
         span_setting = res['span_setting']
         ch_number = res['ch_number']
         mf = res['mf']
+
+        if mf == 0:
+            mf = 'qpsk'
+        elif mf == 1:
+            mf = '16-qam'
         power = res['power']
 
-        signals = generate_signal(dict(nch=ch_number,mf=mf,power=power))
+        signals = generate_qam_signal(ch_number*[power],ch_number*[35],mf)
+
+        for i,signal in enumerate(signals):
+            signal.center_frequence = i*50e9 + 193.1e12
+
+        # [signal.center_frequency = 193.1e12 + i *50e9  for i,signal in enumerate(signals)]
+
+
         spans,edfas = generate_spans_edfas(span_setting)
         wdm_signal = mux_signal(signals)
         assert len(spans) == len(span_setting)
@@ -104,8 +116,9 @@ def main():
         center_signal_afterprop = simulate_spm(center_signal_to_prop_obj,spans,edfas)
         wdm_signal_afterprop  = sumulate_all(wdm_signal,spans,edfas)
         to_save = dict(wdm_signal_afterprop=wdm_signal_afterprop,center_signal_afterprop=center_signal_afterprop,spans=spans)
-        save(to_save,f'{conf_ith}_th')
-        conf_ith = temp
+        conf_ith+=200
+        save(to_save,f'n:/superchanneldata/{conf_ith}_th')
+        # conf_ith = temp
 
 
 if __name__ == '__main__':
