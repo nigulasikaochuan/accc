@@ -4,8 +4,6 @@
     <list default="true" id="12d21b39-57ff-4e74-807b-22bc8147f6c5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/receiver.py" beforeDir="false" afterPath="$PROJECT_DIR$/receiver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+            <state relative-caret-position="-1431">
+              <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-end-line="32" />
             </state>
           </provider>
         </entry>
@@ -36,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/Ocspy/utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-267">
-              <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+            <state relative-caret-position="303">
+              <caret line="61" column="78" selection-start-line="61" selection-start-column="78" selection-end-line="61" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="322">
+              <caret line="97" column="28" lean-forward="true" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -254,7 +252,7 @@
       <option name="presentableId" value="Default" />
       <updated>1561615708800</updated>
       <workItem from="1561615715360" duration="909000" />
-      <workItem from="1562771544396" duration="12702000" />
+      <workItem from="1562771544396" duration="13367000" />
     </task>
     <task id="LOCAL-00001" summary="ws">
       <created>1561615856828</created>
@@ -284,23 +282,29 @@
       <option name="project" value="LOCAL" />
       <updated>1562166247292</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add __len__ method to WdmSignal class">
+      <created>1563012546072</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1563012546072</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13611000" />
+    <option name="totallyTimeSpent" value="14276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="95" width="1920" height="911" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25296018" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25296018" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3705357" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.32756326" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3701731" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.10519308" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -309,7 +313,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.26764315" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.31557924" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,6 +329,17 @@
     <MESSAGE value="repair a bug in utilities.generate_signal" />
     <MESSAGE value="add __len__ method to WdmSignal class" />
     <option name="LAST_COMMIT_MESSAGE" value="add __len__ method to WdmSignal class" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_simulation.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/accc$utilities.coverage" NAME="utilities Coverage Results" MODIFIED="1562772655886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -348,13 +363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/receiver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/Ocspy/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -365,10 +373,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/receiver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="322">
+          <caret line="97" column="28" lean-forward="true" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/Ocspy/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="61" column="78" selection-start-line="61" selection-start-column="78" selection-end-line="61" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -379,17 +401,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/Ocspy/utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
-          <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+        <state relative-caret-position="-1431">
+          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-end-line="32" />
         </state>
       </provider>
     </entry>

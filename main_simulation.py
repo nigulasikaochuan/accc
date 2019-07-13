@@ -115,7 +115,7 @@ def main():
         center_signal_to_prop_obj.set_signal_power(power,'dbm')
         center_signal_afterprop = simulate_spm(center_signal_to_prop_obj,spans,edfas)
         wdm_signal_afterprop  = sumulate_all(wdm_signal,spans,edfas)
-        to_save = dict(wdm_signal_afterprop=wdm_signal_afterprop,center_signal_afterprop=center_signal_afterprop,spans=spans)
+        to_save = dict(wdm_signal_afterprop=wdm_signal_afterprop,center_signal_afterprop=center_signal_afterprop,spans=spans,power=power,mf=mf)
         conf_ith+=200
         save(to_save,f'n:/superchanneldata/{conf_ith}_th')
         # conf_ith = temp
